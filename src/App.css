@@ -111,3 +111,17 @@ button {
   color: #fff;
   background: #000;
 }
+
+
+
+.circle {
+  display: flex;
+  justify-content: space-around;
+  font-family: sans-serif;
+  text-align: center;
+  padding-top: 40px;
+}
+
+.time {
+  font-size: 32px;
+}

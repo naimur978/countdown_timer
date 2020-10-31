@@ -69,7 +69,7 @@ function App(props) {
       ) : (
         <form onSubmit={handleSubmit}>
           <input
-            type="number"
+            type="text"
             value={time}
             onChange={(e) => setTime(Number(e.target.value))}
           />
