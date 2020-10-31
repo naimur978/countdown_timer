@@ -65,7 +65,6 @@ function App(props) {
             {renderTime}
           </CountdownCircleTimer>
 
-          <h4>Starting soon...</h4>
         </Fragment>
       ) : (
         <form onSubmit={handleSubmit}>
