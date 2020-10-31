@@ -34,7 +34,8 @@ function App(props) {
       const seconds = remainingTime % 60;
 
       return `${hours}:${minutes}:${seconds}`;
-    } else if (remainingTime === 0) {
+    }
+    if (remainingTime === 0) {
       return <div className="timer">Too lale...</div>;
     }
 
@@ -59,7 +60,7 @@ function App(props) {
             isPlaying
             duration={time}
             colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
-            onComplete={() => [true, 1000]}
+            onComplete={() => false} //stop immediately after the completion of the circle
           >
             {renderTime}
           </CountdownCircleTimer>
@@ -69,7 +70,7 @@ function App(props) {
       ) : (
         <form onSubmit={handleSubmit}>
           <input
-            type="text"
+            type="number"
             value={time}
             onChange={(e) => setTime(Number(e.target.value))}
           />
