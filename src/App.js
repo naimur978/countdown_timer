@@ -3,6 +3,8 @@ import theme from "./assets/theme.svg";
 
 import React, { Fragment, useEffect, useState } from "react"; //hooks
 
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
+
 function App(props) {
   const [start, setStart] = useState(false);
   const [time, setTime] = useState(0);
@@ -25,6 +27,26 @@ function App(props) {
     setStart(true);
   };
 
+  const renderTime = ({ remainingTime }) => {
+    if (remainingTime > 60) {
+      const hours = Math.floor(remainingTime / 3600);
+      const minutes = Math.floor((remainingTime % 3600) / 60);
+      const seconds = remainingTime % 60;
+
+      return `${hours}:${minutes}:${seconds}`;
+    } else if (remainingTime === 0) {
+      return <div className="timer">Too lale...</div>;
+    }
+
+    return (
+      <div className="timer">
+        <div className="text">Remaining</div>
+        <div className="value">{remainingTime}</div>
+        <div className="text">seconds</div>
+      </div>
+    );
+  };
+
   return (
     <div className="App">
       {start ? (
@@ -32,15 +54,16 @@ function App(props) {
           <img src={theme} alt="theme" />
           <h2>{title}</h2>
           <h3>{details}</h3>
-          <h1>
-            {Math.floor(time / 60) < 10
-              ? `0${Math.floor(time / 60)}`
-              : Math.floor(time % 60)}
-            :
-            {Math.floor(time % 60) < 10
-              ? `0${Math.floor(time % 60)}`
-              : Math.floor(time % 60)}
-          </h1>
+          <CountdownCircleTimer
+            time={time}
+            isPlaying
+            duration={time}
+            colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
+            onComplete={() => [true, 1000]}
+          >
+            {renderTime}
+          </CountdownCircleTimer>
+
           <h4>Starting soon...</h4>
         </Fragment>
       ) : (
